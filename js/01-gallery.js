@@ -25,35 +25,20 @@ function createGallery(items) {
 }
 
 function onGalleryClick(e) {
-    if (e.target.nodeName !== 'IMG') {
-    return;
-    }
-    e.preventDefault();
-    modalShow(e.target.dataset.source);    
+  e.preventDefault();
+  
+  if (e.target.nodeName !== 'IMG') {
+  return;
+  }
+   
+  modalShow(e.target.dataset.source);    
 }
+
 
 function modalShow(src) {
     const instance = basicLightbox.create(
-    `<img src="${src}" width="800" height="600">`,
-        addListener(),
-        removeListener(),
-    );
+    `<img src="${src}" width="800" height="600">`);
     instance.show()
 }
 
-// function addListener() {
-//   instance.show()
-//   window.addEventListener('keydown', onEscClick);
-// }
-
-// function onEscClick(e) {
-//   if (e.code === 'Escape') {
-//     instance.close();
-//     }  
-// }
-
-// function removeListener() {
-// instance.close()
-// window.removeEventListener('keydown', onEscClick);
-// }
 
