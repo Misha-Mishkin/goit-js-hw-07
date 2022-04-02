@@ -6,7 +6,9 @@ console.log(galleryItems);
 const galleryContainer = document.querySelector('.gallery');
 
 const listGallery = createGallery(galleryItems);
+
 galleryContainer.innerHTML = listGallery;
+
 galleryContainer.addEventListener('click', onGalleryClick);
 
 
@@ -25,20 +27,29 @@ function createGallery(items) {
 }
 
 function onGalleryClick(e) {
-  e.preventDefault();
-  
+    
   if (e.target.nodeName !== 'IMG') {
   return;
   }
+  e.preventDefault();
    
   modalShow(e.target.dataset.source);    
+ 
 }
-
 
 function modalShow(src) {
-    const instance = basicLightbox.create(
-    `<img src="${src}" width="800" height="600">`);
-    instance.show()
+  const instance = basicLightbox.create(`
+    <div class="modal">
+        <img src="${src}" width="800" height="600">
+    </div>
+`)
+
+  instance.show()
+  
 }
+
+
+
+
 
 
