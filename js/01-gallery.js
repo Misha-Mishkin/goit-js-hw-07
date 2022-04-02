@@ -38,15 +38,29 @@ function onGalleryClick(e) {
 }
 
 function modalShow(src) {
-  const instance = basicLightbox.create(`
-    <div class="modal">
-        <img src="${src}" width="800" height="600">
-    </div>
-`)
+  const instance = basicLightbox.create(`<img src="${src}">`,
+       {
+    onShow: instance => {
+        window.addEventListener("keydown", onEscClick)
+    },
 
+    onClose: instance => {
+        window.removeEventListener("keydown", onEscClick)
+    }
+      
+       }
+  )
+ 
+  function onEscClick(el) {
+  if (el.code === "Escape") {
+    instance.close();
+}
+}
+  
   instance.show()
   
 }
+
 
 
 
